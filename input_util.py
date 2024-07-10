@@ -17,7 +17,7 @@ def get_option(msg, options_array):
     return option_input
 
 
-def get_key_input(exit_program=True, back_to_main=False):
+def get_key_input(exit_program=True, back_to_main=True):
     print("\n")
     if exit_program:
         print("Press SPACE to exit program.")

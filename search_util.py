@@ -36,7 +36,7 @@ def search_by_name():
 
     if database['meals'] is None:
         print("Nothing found")
-        if input_util.get_key_input(True, True) == 2:
+        if input_util.get_key_input() == 2:
             print_util.clear()
             display_main_page()
         else:
@@ -52,7 +52,7 @@ def search_by_name():
 
     print_util.clear()
     print_util.print_meal_data(meals[option])
-    if input_util.get_key_input(True, True) == 2:
+    if input_util.get_key_input() == 2:
         print_util.clear()
         display_main_page()
     else:
@@ -69,7 +69,7 @@ def search_by_main_ingredient():
 
     if database['meals'] is None:
         print("Nothing found")
-        if input_util.get_key_input(True, True) == 2:
+        if input_util.get_key_input() == 2:
             print_util.clear()
             display_main_page()
         else:
@@ -87,7 +87,7 @@ def search_by_main_ingredient():
 
     print_util.clear()
     print_util.print_meal_data(meal)
-    if input_util.get_key_input(True, True) == 2:
+    if input_util.get_key_input() == 2:
         print_util.clear()
         display_main_page()
     else:
@@ -134,13 +134,13 @@ def smart_search():
 
     if max(result.values()) < 0.5:
         print("No matching meal found")
-        if input_util.get_key_input(True, True) == 2:
+        if input_util.get_key_input() == 2:
             print_util.clear()
             display_main_page()
         else:
             return
 
-    max_heap = [(-similarity, meal) for meal, similarity in result.items() if similarity > 0.5]
+    max_heap = [(-similarity, meal) for meal, similarity in result.items() if similarity >= 0.5]
     heapq.heapify(max_heap)
     best_results = [heapq.heappop(max_heap) for _ in range(len(max_heap))]
     best_results = dict((meal, -similarity) for similarity, meal in best_results)
@@ -162,7 +162,7 @@ def smart_search():
 
     print_util.clear()
     print_util.print_meal_data(result_meals[option])
-    if input_util.get_key_input(True, True) == 2:
+    if input_util.get_key_input() == 2:
         print_util.clear()
         display_main_page()
     else:
